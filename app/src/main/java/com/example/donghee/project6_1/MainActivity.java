@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Chronometer;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     TimePicker timeP;
     TextView tview;
     Chronometer chro;
+
+    Window win = getWindow();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,18 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 cal.setVisibility(View.VISIBLE);
                 timeP.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chro.stop();
+                chro.setTextColor(Color.BLUE);
+
+                java.util.Date curDate = new java.util.Date(cal.getDate());
+                tview.setText(Integer.toString(curDate.getYear())+"년"+(Integer.toString(curDate.getMonth()))+"월"+(Integer.toString(curDate.getDate()))+"일"+
+                        (Integer.toString(timeP.getCurrentHour()))+"시"+(Integer.toString(timeP.getCurrentMinute()))+"분 예약됨");
             }
         });
     }
