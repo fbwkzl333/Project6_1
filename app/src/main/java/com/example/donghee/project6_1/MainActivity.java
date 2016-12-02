@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Chronometer;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -44,5 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        rd1.setChecked(true);
+        rd1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                cal.setVisibility(View.INVISIBLE);
+                timeP.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 }
