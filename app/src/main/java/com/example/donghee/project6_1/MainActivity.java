@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Chronometer;
@@ -13,6 +12,8 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     Button btn1, btn2;
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     TextView tview;
     Chronometer chro;
 
-    Window win = getWindow();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 chro.stop();
                 chro.setTextColor(Color.BLUE);
 
-                java.util.Date curDate = new java.util.Date(cal.getDate());
-                tview.setText(Integer.toString(curDate.getYear())+"년"+(Integer.toString(curDate.getMonth()))+"월"+(Integer.toString(curDate.getDate()))+"일"+
-                        (Integer.toString(timeP.getCurrentHour()))+"시"+(Integer.toString(timeP.getCurrentMinute()))+"분 예약됨");
+                java.util.Calendar curDate = java.util.Calendar.getInstance();
+                curDate.setTimeInMillis(cal.getDate());
+                tview.setText((Integer.toString(curDate.get(Calendar.YEAR)))+"년"+(Integer.toString(curDate.get(Calendar.MONTH)))+"월"+(Integer.toString(curDate.get(Calendar.DATE)))+"일"+
+                        (Integer.toString(timeP.getCurrentMinute()))+"시"+(Integer.toString(timeP.getCurrentMinute()))+"분 예약됨");
             }
         });
     }
