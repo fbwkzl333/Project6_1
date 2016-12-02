@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 chro.setBase(SystemClock.elapsedRealtime());
                 chro.start();
-                chro.setTextColor(Color.RED);
+                chro.setTextColor(Color.RED);   // 텍스트를 레드로 바꿈
 
             }
         });
