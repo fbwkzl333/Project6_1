@@ -54,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
                 timeP.setVisibility(View.VISIBLE);
             }
         });
-
+        rd2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                cal.setVisibility(View.VISIBLE);
+                timeP.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }
