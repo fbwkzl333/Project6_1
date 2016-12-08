@@ -18,4 +18,4 @@
 
 <h3> [예약완료] 버튼 클릭 </h3>
 <img width=200 src=
-"https://github.com/fbwkzl333/Project6_1/blob/master/app/pics/555.png?raw=true" >
+"https://github.com/fbwkzl333/Project6_1/blob/master/app/pics/5555.png?raw=true" >
