@@ -8,12 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Chronometer;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     Button btn1, btn2;
@@ -22,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     TimePicker timeP;
     TextView tview;
     Chronometer chro;
+    int y,m,d;
 
 
     @Override
@@ -38,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
         tview = (TextView) findViewById(R.id.textView1);
         chro = (Chronometer) findViewById(R.id.chronometer);
 
+        cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                y = year;
+                m = month +1;
+                d = dayOfMonth;
+            }
+        });
+
+
+        timeP.setVisibility(View.INVISIBLE);
+        cal.setVisibility(View.INVISIBLE);
+
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,19 +60,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        rd1.setChecked(true);
-        rd1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        rd1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                cal.setVisibility(View.INVISIBLE);
-                timeP.setVisibility(View.VISIBLE);
-            }
-        });
-        rd2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
                 cal.setVisibility(View.VISIBLE);
                 timeP.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        rd2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cal.setVisibility(View.INVISIBLE);
+                timeP.setVisibility(View.VISIBLE);
             }
         });
 
@@ -71,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 chro.stop();
                 chro.setTextColor(Color.BLUE);
 
-                java.util.Calendar curDate = java.util.Calendar.getInstance();
+             java.util.Calendar curDate = java.util.Calendar.getInstance();
                 curDate.setTimeInMillis(cal.getDate());
-                tview.setText((Integer.toString(curDate.get(Calendar.YEAR)))+"년"+(Integer.toString(curDate.get(Calendar.MONTH)))+"월"+(Integer.toString(curDate.get(Calendar.DATE)))+"일"+
-                        (Integer.toString(timeP.getCurrentMinute()))+"시"+(Integer.toString(timeP.getCurrentMinute()))+"분 예약됨");
+                tview.setText(y+"년 "+m+"월 "+d+"일 "+
+                        (Integer.toString(timeP.getCurrentHour()))+"시 "+(Integer.toString(timeP.getCurrentMinute()))+"분 예약됨");
             }
         });
     }
