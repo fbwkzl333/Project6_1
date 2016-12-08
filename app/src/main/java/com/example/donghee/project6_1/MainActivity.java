@@ -82,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 chro.stop();
                 chro.setTextColor(Color.BLUE);
 
-             java.util.Calendar curDate = java.util.Calendar.getInstance();
-                curDate.setTimeInMillis(cal.getDate());
                 tview.setText(y+"년 "+m+"월 "+d+"일 "+
                         (Integer.toString(timeP.getCurrentHour()))+"시 "+(Integer.toString(timeP.getCurrentMinute()))+"분 예약됨");
             }
